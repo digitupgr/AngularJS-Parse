@@ -1,5 +1,7 @@
 'use strict';
 
+Parse.initialize("232ArN0DP9XuNRssZUWWT7gbzeDAuyfXcVigBpU6","frgUWhqdHq70VIJtP2XeKH9baF7YGxEXTsIJkyjJ");
+
 var myApp = angular.module('myApp', ['components', 'routes']);
 
 myApp.controller('navigationCtrl', ['$scope', '$location', function ($scope, $location) {
@@ -8,6 +10,84 @@ myApp.controller('navigationCtrl', ['$scope', '$location', function ($scope, $lo
     };
 }]);
 
+myApp.controller('parseController', ['$scope', function ($scope) {
+
+    var Category = Parse.Object.extend("Category");
+    var query = new Parse.Query(Category);
+    //query.equalTo("category_name", "");
+    query.find({
+        success: function(results) {
+            $scope.$apply(function() {
+                // Do something with the returned Parse.Object values
+                //console.log("Successfully retrieved " + results.length + " item");
+                $scope.category = results.map(function(obj) {
+                    return {objectId: obj.id, categoryName: obj.get("category_name"),  parseObject: obj};
+                });
+                //console.log($scope.category);
+            });
+        },
+        error: function(error) {
+            alert("Error: " + error.code + " " + error.message);
+        }
+    });
+
+}]);
+
+myApp.controller('customController', ['$scope', '$location', '$routeParams', function ($scope, $location, $routeParams) {
+
+    var Category = Parse.Object.extend("Category");
+    var query = new Parse.Query(Category);
+    //query.equalTo("category_name", "");
+    query.find({
+        success: function(results) {
+            $scope.$apply(function() {
+                // Do something with the returned Parse.Object values
+                //console.log("Successfully retrieved " + results.length + " item");
+                $scope.category = results.map(function(obj) {
+                    return {objectId: obj.id, categoryName: obj.get("category_name"),  parseObject: obj};
+                });
+                //console.log($scope.category);
+            });
+        },
+        error: function(error) {
+            alert("Error: " + error.code + " " + error.message);
+        }
+    });
+
+    $scope.changeView = function(category){
+        //console.log(category);
+        var earl = '/custom/' + category.objectId;
+        $location.path(earl);
+    }
+
+    console.log($routeParams.id);
+}]);
+
+
+myApp.controller('customIdController', ['$scope', '$routeParams', function ($scope, $routeParams) {
+
+    //Parse Object with id
+    var Category = Parse.Object.extend("Category");
+    var query = new Parse.Query(Category);
+    //query.equalTo("category_name", "");
+    query.find({
+        success: function(results) {
+            $scope.$apply(function() {
+                // Do something with the returned Parse.Object values
+                //console.log("Successfully retrieved " + results.length + " item");
+                $scope.category = results.map(function(obj) {
+                    return {objectId: obj.id, categoryName: obj.get("category_name"),  parseObject: obj};
+                });
+                //console.log($scope.category);
+            });
+        },
+        error: function(error) {
+            alert("Error: " + error.code + " " + error.message);
+        }
+    });
+
+    console.log($routeParams.id);
+}]);
 
 myApp.controller ('homeController', ['$scope','$location', '$anchorScroll', function ($scope, $location, $anchorScroll) {
 

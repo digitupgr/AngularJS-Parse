@@ -31,4 +31,18 @@ angular.module('routes', ['ngRoute'])
                 controller: 'contactController'
             })
 
+            .when('/parse', {
+                templateUrl: 'pages/parse.html',
+                controller: 'parseController'
+            })
+
+            .when('/custom', {
+                templateUrl: 'pages/custom.html',
+                controller: 'customController'
+            })
+
+            .when('/custom/:id', {
+                templateUrl: 'pages/id.html',
+                controller: 'customIdController'
+            })
     });

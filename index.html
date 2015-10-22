@@ -7,6 +7,10 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>First Website with AngularJS</title>
 
+    <!-- Parse -->
+    <script src="//www.parsecdn.com/js/parse-1.6.7.min.js"></script>
+    <!-- Parse -->
+
     <!-- AngularJS -->
     <script src="//code.angularjs.org/1.4.5/angular.min.js"></script>
     <script src="//code.angularjs.org/1.4.5/angular-route.min.js"></script>
@@ -50,6 +54,8 @@
                         <ul class="nav navbar-nav" ng-controller="navigationCtrl">
                             <li ng-class="{ active: isCurrentPath('/') }"><a href="#/">Home</a></li>
                             <li ng-class="{ active: isCurrentPath('/about') }"><a href="#/about">About</a></li>
+                            <li ng-class="{ active: isCurrentPath('/parse') }"><a href="#/parse">Parse</a></li>
+                            <li ng-class="{ active: isCurrentPath('/custom') }"><a href="#/custom">Custom</a></li>
                             <li ng-class="{ active: isCurrentPath('/contact') }" ><a href="#/contact">Contact</a></li>
                         </ul>
                     </div>

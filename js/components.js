@@ -39,4 +39,25 @@ angular.module('components', [])
                 rightDescription: "@"
             }
         };
+    })
+
+    .directive("parse", function () {
+        return {
+            //restrict: 'ACM',
+            restrict: 'E',
+            templateUrl: 'directives/parse.html',
+            replace: true,
+            scope: {
+                // = : object
+                categoriesObject: "="
+            }
+            //},
+            //link: function(scope, elem, attrs) {
+            //    scope.changeView  = function(category){
+            //        var earl = '/parse/' + category.id;
+            //        //location.path(earl);
+            //        console.log(earl);
+            //    }
+            //}
+        };
     });
